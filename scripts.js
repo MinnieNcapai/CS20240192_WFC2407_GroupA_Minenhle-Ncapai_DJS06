@@ -91,5 +91,11 @@ const priceExtremes = products.reduce((acc, product) => {
 const priceString = `Highest: ${priceExtremes.highest}. Lowest: ${priceExtremes.lowest}.`;
 console.log(priceString);
  
-
+//Object Transformation: Using Object.entries and reduce, recreate the products object with keys 'name' and 'cost', maintaining their original values.
+const transformedProducts = products.reduce((acc, product, index) => {
+  acc[index] = { name: product.product, cost: product.price };
+  return acc;
+}, {});
+console.log("Transformed Products:", transformedProducts);
+  
 

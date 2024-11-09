@@ -54,4 +54,17 @@ console.log("Provinces without the word Cape:", filteredProvinces.length);
     acc[name] = provinces[index];
     return acc;
     }, {});
-    console.log("Name to Province Mapping:", nameToProvince)
+    console.log("Mapping Names to Provinces:", nameToProvince)
+
+  //Advances Excercises:
+
+  //Log Products: Iterate over the products array, logging each product name.
+  //Logging Products
+  console.log ("Product Names:", products)
+
+  // Filter by Name Length: Filter out products with names longer than 5 characters.
+  const filteredProducts = products.filter(product => product.product.length <= 5)
+  console.log("Filtered Products:", filteredProducts)
+ 
+
+

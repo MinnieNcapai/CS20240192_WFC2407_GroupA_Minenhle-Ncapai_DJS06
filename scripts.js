@@ -65,6 +65,17 @@ console.log("Provinces without the word Cape:", filteredProvinces.length);
   // Filter by Name Length: Filter out products with names longer than 5 characters.
   const filteredProducts = products.filter(product => product.product.length <= 5)
   console.log("Filtered Products:", filteredProducts)
+
+   //Price Manipulation: Filter out products without prices, convert string prices to numbers, and calculate the total price using reduce.
+   const totalPrice = products.reduce ((acc,products) => {
+    if (products.price && products.price.toString().trim() !== '') {
+      return acc + Number (products.price);
+    }
+     return acc ;
+   }, 0);
+  console.log("Total Price:", totalPrice);
+  
+    
  
 
 

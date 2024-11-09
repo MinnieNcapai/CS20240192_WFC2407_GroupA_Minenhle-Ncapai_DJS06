@@ -43,39 +43,53 @@ console.log("Sorted Provinces:", sortedProvinces);
 const filteredProvinces= provinces.filter(province => !province.includes('Cape'));
 console.log("Provinces without the word Cape:", filteredProvinces.length);
 
- //Task:Create a boolean array using map and some to determine if a name contains the letter 'S'.
-  //Finding 'S'
-  const namesWithS = names.map(name => name.includes('S'));
-  console.log("Names containing 'S':" ,namesWithS);
+//Task:Create a boolean array using map and some to determine if a name contains the letter 'S'.
+//Finding 'S'
+const namesWithS = names.map(name => name.includes('S'));
+console.log("Names containing 'S':" ,namesWithS);
 
-  //Task:Use reduce to transform the names array into an object mapping names to their respective provinces.
-  //Creating Object Mapping
-  const nameToProvince = names.reduce((acc, name, index) => {
-    acc[name] = provinces[index];
-    return acc;
-    }, {});
-    console.log("Mapping Names to Provinces:", nameToProvince)
+//Task:Use reduce to transform the names array into an object mapping names to their respective provinces.
+//Creating Object Mapping
+const nameToProvince = names.reduce((acc, name, index) => {
+  acc[name] = provinces[index];
+  return acc;
+  }, {});
+ console.log("Mapping Names to Provinces:", nameToProvince)
 
-  //Advances Excercises:
+//Advances Excercises:
 
-  //Log Products: Iterate over the products array, logging each product name.
-  //Logging Products
-  console.log ("Product Names:", products)
+//Log Products: Iterate over the products array, logging each product name.
+ //Logging Products
+console.log ("Product Names:", products)
 
-  // Filter by Name Length: Filter out products with names longer than 5 characters.
-  const filteredProducts = products.filter(product => product.product.length <= 5)
-  console.log("Filtered Products:", filteredProducts)
+// Filter by Name Length: Filter out products with names longer than 5 characters.
+const filteredProducts = products.filter(product => product.product.length <= 5)
+console.log("Filtered Products:", filteredProducts)
 
-   //Price Manipulation: Filter out products without prices, convert string prices to numbers, and calculate the total price using reduce.
-   const totalPrice = products.reduce ((acc,products) => {
-    if (products.price && products.price.toString().trim() !== '') {
-      return acc + Number (products.price);
+//Price Manipulation: Filter out products without prices, convert string prices to numbers, and calculate the total price using reduce.
+const totalPrice = products.reduce ((acc,products) => {
+ if (products.price && products.price.toString().trim() !== '') {
+    return acc + Number (products.price);
     }
-     return acc ;
+    return acc ;
    }, 0);
-  console.log("Total Price:", totalPrice);
+console.log("Total Price:", totalPrice);
   
+//Concatenate Product Names: Use reduce to concatenate all product names into a single string.
+const concatenatedProductNames = products.reduce((acc, product) => acc + product.product + ' ', '').trim();
+
+//Find Extremes in Prices: Identify the highest and lowest-priced items, returning a string formatted as "Highest: X. Lowest: Y."
+const priceExtremes = products.reduce((acc, product) => {
+  if (product.price && product.price.toString().trim() !== '') {
+    const price = Number(product.price);
+    if (price > acc.highest) acc.highest = price;
+    if (price < acc.lowest) acc.lowest = price;
+    }
+    return acc;
+  }, { highest: -Infinity, lowest: Infinity });
     
+const priceString = `Highest: ${priceExtremes.highest}. Lowest: ${priceExtremes.lowest}.`;
+console.log(priceString);
  
 
 

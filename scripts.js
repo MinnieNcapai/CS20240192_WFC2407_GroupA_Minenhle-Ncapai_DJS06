@@ -47,3 +47,11 @@ console.log("Provinces without the word Cape:", filteredProvinces.length);
   //Finding 'S'
   const namesWithS = names.map(name => name.includes('S'));
   console.log("Names containing 'S':" ,namesWithS);
+
+  //Task:Use reduce to transform the names array into an object mapping names to their respective provinces.
+  //Creating Object Mapping
+  const nameToProvince = names.reduce((acc, name, index) => {
+    acc[name] = provinces[index];
+    return acc;
+    }, {});
+    console.log("Name to Province Mapping:", nameToProvince)

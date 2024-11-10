@@ -60,42 +60,39 @@ const nameToProvince = names.reduce((acc, name, index) => {
 
 //Log Products: Iterate over the products array, logging each product name.
  //Logging Products
-console.log ("Product Names:", products)
+console.log ({
+  "Product Names:": products,
 
 // Filter by Name Length: Filter out products with names longer than 5 characters.
-const filteredProducts = products.filter(product => product.product.length <= 5)
-console.log("Filtered Products:", filteredProducts)
+"Filtered Products": products.filter(product => product.product.length <= 5),
 
 //Price Manipulation: Filter out products without prices, convert string prices to numbers, and calculate the total price using reduce.
-const totalPrice = products.reduce ((acc,products) => {
- if (products.price && products.price.toString().trim() !== '') {
-    return acc + Number (products.price);
-    }
-    return acc ;
-   }, 0);
-console.log("Total Price:", totalPrice);
-  
+"Total Price": products.reduce((acc, product) => {
+  if (product.price && product.price.toString().trim() !== '') {
+    return acc + Number(product.price);
+  }
+  return acc;
+}, 0),
 //Concatenate Product Names: Use reduce to concatenate all product names into a single string.
-const concatenatedProductNames = products.reduce((acc, product) => acc + product.product + ' ', '').trim();
+"Concatenated Product Names": products.reduce((acc, product) => acc + product.product + ' ', '').trim(),
 
 //Find Extremes in Prices: Identify the highest and lowest-priced items, returning a string formatted as "Highest: X. Lowest: Y."
-const priceExtremes = products.reduce((acc, product) => {
-  if (product.price && product.price.toString().trim() !== '') {
-    const price = Number(product.price);
-    if (price > acc.highest) acc.highest = price;
-    if (price < acc.lowest) acc.lowest = price;
+"Price Extremes": (() => {
+  const priceExtremes = products.reduce((acc, product) => {
+    if (product.price && product.price.toString().trim() !== '') {
+      const price = Number(product.price);
+      if (price > acc.highest) acc.highest = price;
+      if (price < acc.lowest) acc.lowest = price;
     }
     return acc;
   }, { highest: -Infinity, lowest: Infinity });
-    
-const priceString = `Highest: ${priceExtremes.highest}. Lowest: ${priceExtremes.lowest}.`;
-console.log(priceString);
+  return `Highest: ${priceExtremes.highest}. Lowest: ${priceExtremes.lowest}.`;
+})(),
  
 //Object Transformation: Using Object.entries and reduce, recreate the products object with keys 'name' and 'cost', maintaining their original values.
-const transformedProducts = products.reduce((acc, product, index) => {
+"Transformed Products": products.reduce((acc, product, index) => {
   acc[index] = { name: product.product, cost: product.price };
   return acc;
-}, {});
-console.log("Transformed Products:", transformedProducts);
-  
+}, {})
+});
 
